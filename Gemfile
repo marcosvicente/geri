@@ -17,10 +17,9 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# Gem for make athetification
+# User for make athetification
 gem 'devise'
 # gem 'therubyracer', platforms: :ruby
-gem
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
@@ -41,7 +40,7 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   # Gem for make a test
-  gem 'rspec-rails', '~> 3.7'
+   gem 'rspec-rails', '~> 3.7'
 end
 
 group :development do
