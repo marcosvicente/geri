@@ -59,9 +59,10 @@ class MaterialsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def hour_block
       t = Time.zone.now
-
       if t.hour < 18 && t.hour > 9
         return true
+      else
+        return false
       end
     end
 
