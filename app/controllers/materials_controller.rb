@@ -4,6 +4,7 @@ class MaterialsController < ApplicationController
   # GET /materials
   # GET /materials.json
   def index
+    hour_block
     @materials = Material.all
   end
 
@@ -40,29 +41,30 @@ class MaterialsController < ApplicationController
   # PATCH/PUT /materials/1
   # PATCH/PUT /materials/1.json
   def update
-    respond_to do |format|
-      if @material.update(material_params)
-        format.html { redirect_to @material, notice: 'Material was successfully updated.' }
-        format.json { render :show, status: :ok, location: @material }
-      else
-        format.html { render :edit }
-        format.json { render json: @material.errors, status: :unprocessable_entity }
+    if hour_block == true
+      respond_to do |format|
+        if @material.update(material_params)
+          format.html { redirect_to @material, notice: 'Material was successfully updated.' }
+          format.json { render :show, status: :ok, location: @material }
+        else
+          format.html { render :edit }
+          format.json { render json: @material.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
 
-  # DELETE /materials/1
-  # DELETE /materials/1.json
-  def destroy
-    @material.destroy
-    respond_to do |format|
-      format.html { redirect_to materials_url, notice: 'Material was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def hour_block
+      t = Time.zone.now
+
+      if t.hour < 18 && t.hour > 9
+        return true
+      end
+    end
+
     def set_material
       @material = Material.find(params[:id])
     end
