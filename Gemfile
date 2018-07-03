@@ -28,6 +28,7 @@ gem 'jbuilder', '~> 2.5'
 # gem use for work with materilize css
 gem 'materialize-sass'
 
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
@@ -35,6 +36,10 @@ gem 'materialize-sass'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+
+
+gem 'database_cleaner', group: :test
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -44,6 +49,8 @@ group :development, :test do
   gem 'selenium-webdriver'
   # Gem for make a test
    gem 'rspec-rails', '~> 3.7'
+   # gem use for create a custom values
+   gem 'factory_bot_rails'
 end
 
 group :development do

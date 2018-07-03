@@ -41,7 +41,7 @@ class MaterialsController < ApplicationController
   # PATCH/PUT /materials/1
   # PATCH/PUT /materials/1.json
   def update
-    if hour_block == true
+    if hour_block == true && quantify_can_be_bigger == true
       respond_to do |format|
         if @material.update(material_params)
           format.html { redirect_to @material, notice: 'Material was successfully updated.' }
@@ -66,12 +66,26 @@ class MaterialsController < ApplicationController
       end
     end
 
+    def quantify_can_be_bigger
+      @params = material_params
+      name = @params[:name]
+      @material = Material.find_by(name: name)
+      if @params[:quantify].present? && @material != nil
+        value1 = @params[:quantify].to_i
+        value2 =  @material.quantify.to_i
+        if value1 < value2
+          return true
+        else
+          return false
+        end
+      end
+    end
+
     def set_material
       @material = Material.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def material_params
-      params.require(:material).permit(:name)
+      params.require(:material).permit(:id, :name, :quantify)
     end
 end
