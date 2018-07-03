@@ -1,14 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @material.name %>
-</p>
+<div class="row">
+  <div class="col s3 push-s3">
+    <div class="card teal lighten-2">
+      <div class="card-content">
+        <span class="card-title white-text">Material : <%= @material.name %></span>
+        <span class="white-text">Quantidade: <%= @material.quantify %></span>
+    </div>
+  </div>
+  </div>
+</div>
 
-
-<p>
-  <strong>Quantify:</strong>
-  <%= @material.quantify %>
-</p>
-<%= link_to 'Edit', edit_material_path(@material) %> |
-<%= link_to 'Back', materials_path %>
+<div class="row">
+  <div class="col s3 push-s3">
+    <%= link_to 'Editar', edit_material_path(@material), :class => 'waves-effect waves-light btn' %>
+    <%= link_to 'Voltar', materials_path, :class => 'waves-effect waves-light btn' %>
+  </div>
+</div>

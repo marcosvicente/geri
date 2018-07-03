@@ -2,13 +2,15 @@
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 
-<h1>Materials</h1>
+<h1 class="center">Materials</h1>
 
-<table>
+<div class="row">
+  <div class="col s6 push-s3">
+    <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Quantify</th>
+      <th>Material</th>
+      <th>Quantidade</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,14 +20,20 @@
       <tr>
         <td><%= material.name %></td>
         <td><%= material.quantify %></td>
-        <td><%= link_to 'Show', material %></td>
-        <td><%= link_to 'Edit', edit_material_path(material) %></td>
-        <td><%= link_to 'Destroy', material, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Ver Material', material %></td>
+        <td><%= link_to 'Entrada de material', edit_material_path(material) %></td>
+        <td><%= link_to 'Saida de material', edit_material_path(material) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+  </div>
+</div>
 
 <br>
 
-<%= link_to 'New Material', new_material_path %>
+<div class="row">
+  <div class="col s3 push-s3">
+    <%= link_to 'Novo Material', new_material_path, :class => "btn btn-inverse" %>
+  </div>
+</div>

@@ -1,6 +1,8 @@
-<h1>Editing Material</h1>
+<h1 class="center">Editar Material</h1>
+<div class="row">
+  <div class="col s3 push-s8">
+    <%= link_to 'Voltar', materials_path , :class => 'waves-effect waves-light btn' %>
+  </div>
+</div>
 
 <%= render 'form', material: @material %>
-
-<%= link_to 'Show', @material %> |
-<%= link_to 'Back', materials_path %>
