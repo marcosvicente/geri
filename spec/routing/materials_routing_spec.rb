@@ -35,5 +35,13 @@ RSpec.describe MaterialsController, type: :routing do
       expect(:delete => "/materials/1").to route_to("materials#destroy", :id => "1")
     end
 
+    it "routes to #entrada" do
+      expect(:get => "/materials/1/entrada").to route_to("materials#entrada", :id => "1")
+    end
+
+    it "routes to #saida" do
+      expect(:get => "/materials/1/saida").to route_to("materials#saida", :id => "1")
+    end
+
   end
 end

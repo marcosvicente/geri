@@ -56,6 +56,9 @@ group :development, :test do
    gem 'rails-controller-testing'
    # use for simulate hour
    gem 'timecop'
+   # use for work with expectations
+   gem 'rspec-expectations'
+
 end
 
 group :development do

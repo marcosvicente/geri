@@ -1,10 +1,9 @@
 class MaterialsController < ApplicationController
-  before_action :set_material, only: [:show, :edit, :update, :destroy]
+  before_action :set_material, only: [:show, :entrada, :saida, :update, :destroy]
 
   # GET /materials
   # GET /materials.json
   def index
-    hour_block
     @materials = Material.all
   end
 
@@ -18,8 +17,12 @@ class MaterialsController < ApplicationController
     @material = Material.new
   end
 
-  # GET /materials/1/edit
-  def edit
+  # GET /materials/1/entrada
+  def entrada
+  end
+
+  # GET /materials/1/saida
+  def saida
   end
 
   # POST /materials
@@ -29,7 +32,7 @@ class MaterialsController < ApplicationController
 
     respond_to do |format|
       if @material.save
-        format.html { redirect_to @material, notice: 'Material was successfully created.' }
+        format.html { redirect_to @material, notice: 'Material foi criado.' }
         format.json { render :show, status: :created, location: @material }
       else
         format.html { render :new }
@@ -41,16 +44,18 @@ class MaterialsController < ApplicationController
   # PATCH/PUT /materials/1
   # PATCH/PUT /materials/1.json
   def update
-    if hour_block == true && quantify_can_be_bigger == true
+    if hour_block == true && quantify_can_be_bigger == false
       respond_to do |format|
         if @material.update(material_params)
-          format.html { redirect_to @material, notice: 'Material was successfully updated.' }
+          format.html { redirect_to @material, notice: 'Material foi atualizado.' }
           format.json { render :show, status: :ok, location: @material }
         else
           format.html { render :edit }
           format.json { render json: @material.errors, status: :unprocessable_entity }
         end
       end
+    else
+      flash[:notice] = "Não Pode atualizar o material."
     end
   end
 

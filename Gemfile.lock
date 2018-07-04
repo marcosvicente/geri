@@ -229,6 +229,7 @@ DEPENDENCIES
   puma (~> 3.7)
   rails (~> 5.1.6)
   rails-controller-testing
+  rspec-expectations
   rspec-rails (~> 3.7)
   sass-rails (~> 5.0)
   selenium-webdriver
