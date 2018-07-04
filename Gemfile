@@ -52,6 +52,10 @@ group :development, :test do
    gem 'rspec-rails', '~> 3.7'
    # gem use for create a custom values
    gem 'factory_bot_rails'
+   # use this for make test for controller
+   gem 'rails-controller-testing'
+   # use for simulate hour
+   gem 'timecop'
 end
 
 group :development do
