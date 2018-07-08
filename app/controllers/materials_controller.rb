@@ -29,38 +29,42 @@ class MaterialsController < ApplicationController
   # POST /materials.json
   def create
     @material = Material.new(material_params)
-
-    respond_to do |format|
-      if @material.save
-        format.html { redirect_to @material, notice: 'Material foi criado.' }
-        format.json { render :show, status: :created, location: @material }
-      else
-        format.html { render :new }
-        format.json { render json: @material.errors, status: :unprocessable_entity }
-      end
+    if @material.save
+      redirect_to @material
+      flash[:notice] = 'Material foi criado.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /materials/1
   # PATCH/PUT /materials/1.json
   def update
-    if hour_block == true && quantify_can_be_bigger == false
-      respond_to do |format|
-        if @material.update(material_params)
-          format.html { redirect_to @material, notice: 'Material foi atualizado.' }
-          format.json { render :show, status: :ok, location: @material }
-        else
-          format.html { render :edit }
-          format.json { render json: @material.errors, status: :unprocessable_entity }
-        end
+    if hour_block == true
+      if quantify_can_be_bigger == true && params[:type] == "entrada"
+        entrada_and_saida_update
+      elsif quantify_can_be_bigger == false && params[:type] == "saida"
+        entrada_and_saida_update
+      else
+        flash[:notice] = 'Material não foi atualizado.'
       end
     else
-      flash[:notice] = "Não Pode atualizar o material."
+      flash[:notice] = 'Material só pode ser atualizada entre ás 9 e as 19 horas.'
+
     end
   end
 
-
   private
+    def entrada_and_saida_update
+      if @material.update(material_params)
+        flash[:notice] = 'Material foi atualizado.'
+        redirect_to @material
+      else
+        flash[:notice] = 'Material não foi atualizado.'
+        render :edit
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def hour_block
       t = Time.zone.now
@@ -76,9 +80,9 @@ class MaterialsController < ApplicationController
       name = @params[:name]
       @material = Material.find_by(name: name)
       if @params[:quantify].present? && @material != nil
-        value1 = @params[:quantify].to_i
-        value2 =  @material.quantify.to_i
-        if value1 < value2
+        valueNew = @params[:quantify].to_i
+        valueOld =  @material.quantify.to_i
+        if valueNew > valueOld
           return true
         else
           return false
@@ -93,4 +97,5 @@ class MaterialsController < ApplicationController
     def material_params
       params.require(:material).permit(:id, :name, :quantify)
     end
+
 end
