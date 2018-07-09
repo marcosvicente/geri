@@ -29,6 +29,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'materialize-sass'
 # gem for use jquery
 gem 'jquery-rails'
+# gem for create faker methods
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
@@ -39,8 +41,6 @@ gem 'jquery-rails'
 # gem 'capistrano-rails', group: :development
 
 
-
-gem 'database_cleaner', group: :test
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -54,10 +54,18 @@ group :development, :test do
    gem 'factory_bot_rails'
    # use this for make test for controller
    gem 'rails-controller-testing'
+   # Strategies for cleaning databases in Ruby. Can be used to ensure a clean state for testing.
+   gem 'database_cleaner'
    # use for simulate hour
    gem 'timecop'
    # use for work with expectations
    gem 'rspec-expectations'
+   # Fuubar is an instafailing RSpec formatter that uses a progress bar instead of a string of letters and dots as feedback.
+   gem 'fuubar'
+   # Collection of testing matchers extracted from Shoulda http://matchers.shoulda.io
+   gem 'shoulda-matchers', '3.0.0.rc1'
+
+
 
 end
 

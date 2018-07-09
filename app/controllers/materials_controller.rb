@@ -95,7 +95,7 @@ class MaterialsController < ApplicationController
     end
 
     def material_params
-      params.require(:material).permit(:id, :name, :quantify)
+      params.require(:material).permit(:name, :quantify)
     end
 
 end

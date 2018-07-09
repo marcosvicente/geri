@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180703220620) do
+ActiveRecord::Schema.define(version: 20180703214442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,9 +18,11 @@ ActiveRecord::Schema.define(version: 20180703220620) do
   create_table "logs", force: :cascade do |t|
     t.string "action"
     t.bigint "material_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["material_id"], name: "index_logs_on_material_id"
+    t.index ["user_id"], name: "index_logs_on_user_id"
   end
 
   create_table "materials", force: :cascade do |t|
@@ -28,8 +30,6 @@ ActiveRecord::Schema.define(version: 20180703220620) do
     t.integer "quantify"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "users_id"
-    t.index ["users_id"], name: "index_materials_on_users_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -50,5 +50,5 @@ ActiveRecord::Schema.define(version: 20180703220620) do
   end
 
   add_foreign_key "logs", "materials"
-  add_foreign_key "materials", "users", column: "users_id"
+  add_foreign_key "logs", "users"
 end

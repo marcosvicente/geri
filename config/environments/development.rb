@@ -54,5 +54,8 @@ Rails.application.configure do
 
   # Config for mailer
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # Config locale for faker
+  Faker::Config.locale = :"pt-BR"
+
 
 end

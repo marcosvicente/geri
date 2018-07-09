@@ -3,6 +3,7 @@ class CreateLogs < ActiveRecord::Migration[5.1]
     create_table :logs do |t|
       t.string :action
       t.references :material, foreign_key: true
+      t.references :user, foreign_key: true
       t.timestamps
     end
   end

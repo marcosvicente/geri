@@ -1,7 +1,6 @@
 FactoryBot.define do
   factory :material do
-    name "lapis"
-    quantify  5
-    association :users_id, factory: :user
+    name Faker::ElectricalComponents.active
+    quantify  Faker::Number.number(5)
   end
 end
